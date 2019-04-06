@@ -1,7 +1,7 @@
 <?php
 header("Access-Control-Allow-Origin: *");
 
-$con = mysqli_connect("127.0.0.1", "root", "", "gps_data") or die ("Could not connect database");
+$con = mysqli_connect("127.0.0.1", "root", "", "feeds") or die ("Could not connect database");
 
 if (!$con) {
     echo "Error: Unable to connect to MySQL." . PHP_EOL;
