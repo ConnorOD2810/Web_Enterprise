@@ -1,14 +1,18 @@
 $(function(){
 
-    
-  
+
+
   });
 
-function login(){
-    $.post("../php/login.php",
+function login(e){
+  console.log("eat my ass");
+  e.preventDefault();
+
+    $.post(window.location.href+"/php/login.php",
+
     {
-      username: $("#username").value(),
-      password: $("#password").value()
+      username: $("#username").val(),
+      password: $("#password").val()
     },
     function(data, status){
       alert("Data: " + data + "\nStatus: " + status);
@@ -16,33 +20,41 @@ function login(){
 
 }
 
-function addFeed(){
+function addFeed(feed){
     $.post("../php/addFeed.php",
     {
-        feed: $("#feed").value()
+        feed: feed
       },
       function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
       });
 }
 
-function delFeed(){
+function delFeed(feed){
     $.post("../php/delFeed.php",
     {
-        feed: $("#feed").value()
+        feed: feed
       },
       function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
       });
 }
 
-function getFeeds(){
-    $.get("../php/getFeed.php",
+function getFeeds(feeds){
+    $.get("../php/getFeed.php?feeds="+feeds.join(","),
     {
-        feed: $("#feed").value()
+        feed: $("#feed").val()
       },
       function(data, status){
         alert("Data: " + data + "\nStatus: " + status);
       });
 }
 
+function checkChange(e){
+  e.preventDefault();
+  if (e.target.checked) {
+    addFeed(e.target.id);
+  } else {
+    delFeed(e.target.id);
+  }
+}
